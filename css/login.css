@@ -1,0 +1,97 @@
+.custom-input-border {
+    width:17rem !important;
+    border-color:#cccccc;
+    box-shadow: black;
+}
+.custom-btn-register{ 
+    width:40%;
+    background-color: #00515f;
+    border: none;
+    color:white;   
+}
+.custom-btn-register:hover { 
+    background-color: #016d81;
+    border: none;
+    color:white;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media screen and (max-width: 575.98px) {
+    .custom-container {
+        flex-direction: column !important;
+        margin: 0 auto !important;
+        padding: 4rem;
+    }
+    .custom-card {
+        text-align: center; 
+    }
+    .card-body {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    .card { 
+        padding:.2rem !important;
+    }
+    img {
+        width:150px;
+        height:auto;
+    }
+    .custom-reg-container {
+        padding:1rem !important;
+        margin-top: .3rem !important;
+    }
+    
+}
+
+/* for small devices */
+@media screen and (min-width: 576px) and (max-width: 992px) {
+    .custom-container {
+        flex-direction: column !important;
+        padding: 4rem;
+        margin: 0 auto !important;
+    }
+    .custom-card {
+        text-align: center;
+    }
+    .card {
+        padding:.3rem !important;
+        margin:.5rem !important;
+    }
+    .card-body { 
+        padding:.5rem !important;
+    }
+    img {
+        width:250px;
+        height:auto;
+    }
+    button {
+        width:90% !important;
+    }
+     .custom-reg-container {
+        padding:.5rem !important;
+        margin-top: .3rem !important;
+    }
+}
+
+/* for large devices laptop or desktops */
+@media screen and (min-width: 992px) and (max-width: 1060px) {
+   .custom-container { 
+        margin: 0 auto !important;
+        padding: 4rem;
+   }
+   img { 
+        width:150px !important;
+        height: auto;
+   }
+   .custom-card { 
+        width: 50% !important;
+   }
+   .card {
+        padding:1rem !important; 
+   }
+   .custom-reg-container {
+        padding:.5rem !important;
+        margin-top: .3rem !important;
+   }
+}
