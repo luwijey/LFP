@@ -91,3 +91,4 @@ document.getElementById("enterOTP").addEventListener("submit", (e) => {
     .catch(err => console.error("Error Verifying OTP: ", err));
 
 });
+

@@ -1,5 +1,6 @@
 <?php 
 include '../components/connection.php';
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     $gmail = $_POST['email'];
@@ -14,10 +15,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
         $row = $user -> fetch_assoc();
         
         if(password_verify($pass, $row['password'])){
-            $_SESSION['gmail'] = $gmail;
+            $_SESSION['email'] = $gmail;
             echo "Login Successful !";
             header("Location: ../main/lfp.php");
-            exit();
+            exit;
         }
         else {  
             echo "Invalid credentials please try again";

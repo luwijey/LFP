@@ -1,13 +1,14 @@
+<?php
+    include '../components/header.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include '../components/header.php'; ?>
-    <?php require '../components/connection.php'; ?>
     <link rel="stylesheet" href="/LFP/css/login.css">
     <link rel="stylesheet" href="/LFP/css/forms.css">
-    <script src="../js/forms.js"></script>
+    <script defer src="../js/forms.js"></script>
 
 
     <title>Login</title>
@@ -28,6 +29,7 @@
                             name="email" placeholder="email" 
                             required
                         >
+                        
                         <label for="email">Email</label>
                     </div>   
                     
@@ -48,9 +50,9 @@
                         </i>
                     </div>  
 
-                    <div class="d-flex mt-2 justify-content-center">
-                        <button class="btn rounded-2 m-2 p-2 universal-btn" 
-                            type="submit">
+                    <div class="d-flex mt-2 justify-content-center" >
+                        <button class="btn rounded-2 m-2 p-2 universal-btn"  
+                            type="submit" id="login">
                             Log In
                         </button>
                     </div>

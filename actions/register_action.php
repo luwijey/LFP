@@ -2,7 +2,8 @@
 include '../components/connection.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $gmail = $_POST['email'];
+    $gmail = trim($_POST['email']);
+    
 
     $verifyEmail = "SELECT * FROM user WHERE gmail = ? ";
     $stmt = $conn -> prepare($verifyEmail);
@@ -14,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $fullName = $_POST['fullname'];
         $password = $_POST['password'];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $filteredFullname = ucwords(strtolower($fullName));
+        $filteredFullname = trim(ucwords(strtolower($fullName)));
         
         $insertUser = $conn -> prepare("INSERT INTO user (`name`, `gmail`, `password`) VALUES (?, ?, ?) ");
         $insertUser -> bind_param("sss", $filteredFullname, $gmail, $hashedPassword);
@@ -28,14 +29,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         else{
             echo "User failed to register" . $conn -> error;
         }
-    }else {
+        $insertUser->close();
+    } else {
         echo "<script> 
             alert ('User already exist!'); 
             window.location.href='../main/login.php'; 
             </script> "; 
     }
     $stmt -> close();
-    $insertUser -> close();
     $conn -> close(); 
 }
 

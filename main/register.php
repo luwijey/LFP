@@ -1,11 +1,13 @@
+<?php
+    include '../components/header.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include '../components/header.php'; ?>
     <link rel="stylesheet" href="/LFP/css/forms.css">
-    <script src="../js/forms.js"></script>
+    <script defer src="../js/forms.js"></script>
     <title>Register Account</title>
 </head>
 <body>
@@ -14,7 +16,7 @@
             <h3>Turn loss into hope.</h3>
         </div>
         <div class="container d-flex justify-content-center ">
-            <form action="../actions/register_action.php" method="post">
+            <form action="../actions/register_action.php" method="POST">
                 <div class="card shadow p-4 border-1 rounded-2">
                     <div class="container border-bottom p-2 mb-4">
                         <h3>Create an Account</h3>

@@ -8,12 +8,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['otp'])){
     $otpArray = $_POST['otp'];
     $enteredOTP = implode("", $otpArray);
 
-    if (!isset($_SESSION['otpSent']) || !isset($_SESSION['otp-expiry'])) {
+    $otpSent = $_SESSION['otpSent'];
+    $otpExpiry = $_SESSION['otp-expiry'];
+
+    if (!isset($otpSent) || !isset($otpExpiry)) {
         echo json_encode(["success" => false, "message" => "OTP not found. Please Request again."]);
         exit;
     }
 
-    if (time() > $_SESSION['otp-expiry']) { 
+    if (time() > $otpExpiry) { 
         echo json_encode(["success" => false, "message" => "OTP expired, please request a new one."]);
         exit;
     } 
@@ -23,10 +26,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['otp'])){
         exit;
     }
 
-    if ($enteredOTP == $_SESSION['otpSent']) {
+    if ($enteredOTP == $otpSent) {
         echo json_encode(["success" => true, "message" => "OTP verified!"]);
-        unset($_SESSION['otpSent']);
-        unset($_SESSION['otp-expiry']);
+        unset($otpSent);
+        unset($otpExpiry);
         exit;
     }
     else {

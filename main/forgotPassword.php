@@ -1,9 +1,11 @@
+<?php 
+    include '../components/header.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include '../components/header.php'; ?>
     <link rel="stylesheet" href="/LFP/css/forms.css">
     <link rel="stylesheet" href="/LFP/css/forgotPw.css">
     <script defer src="../js/forms.js"></script>
