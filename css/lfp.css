@@ -22,18 +22,27 @@ body {
     letter-spacing: 8px;
 }
 
+.custom-logo:hover {
+    color:#cccccc !important;
+}
+
 .custom-list button { 
     color:  #f9f8f4;
 }
 
 .custom-list button:hover {
-    color:  #cccccc;
+    color:  #000000;
 }
 
 .nav-pills .nav-link.active {
     background-color:#ffffff !important; 
     color:var(--font-color);
 }
+
+.nav-pills .nav-link:hover {
+    background-color:#ffffff !important; 
+}
+
 
 #logout {
     color: #fc2b40;
