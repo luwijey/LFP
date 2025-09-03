@@ -37,7 +37,19 @@ include '../components/header.php';
             </ul>       
         </nav>
     </div>
-    <main>
+    <main class="container-fluid ">
+        <!--search container-->
+        <div class="container-fluid w-100 d-flex justify-content-between">
+            <select class="sort p-2" name="sort" id="sort">
+                <option value="all">All</option>
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+            </select>
+            <form class="d-flex gap-1" action="" method="get">
+                <input class="search-bar form-control border-1 border-dark" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>
