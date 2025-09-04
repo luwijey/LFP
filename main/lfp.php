@@ -37,18 +37,29 @@ include '../components/header.php';
             </ul>       
         </nav>
     </div>
-    <main class="container-fluid ">
+    <main class="container-fluid">
         <!--search container-->
-        <div class="container-fluid w-100 d-flex justify-content-between">
-            <select class="sort p-2" name="sort" id="sort">
-                <option value="all">All</option>
-                <option value="lost">Lost</option>
-                <option value="found">Found</option>
-            </select>
+        <div class="container-fluid mb-4 d-flex justify-content-between align-items-center">
+            <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name);?></span>
             <form class="d-flex gap-1" action="" method="get">
                 <input class="search-bar form-control border-1 border-dark" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
-                <button class="btn" type="submit">Search</button>
+                <select class="sort p-2" name="sort" id="sort">
+                    <option value="all">All</option>
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                </select>
             </form>
+        </div>
+         <!--Lost container-->
+        <div class="content border p-2 d-flex align-content-around flex-wrap flex-column">
+            <div class="container-fluid p-3 border">
+                <h5>Recently Found</h5>
+                <hr>
+            </div>
+            <div class="container-fluid p-3 border">
+                <h5>Recently Lost</h5>
+                <hr>   
+            </div>
         </div>
     </main>
 </body>

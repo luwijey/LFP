@@ -5,5 +5,5 @@ if (!isset($_SESSION['email'])) {
     header("Location: ../main/login.php");
     exit();
 }
-
+$name = $_SESSION['name'];
 ?>
