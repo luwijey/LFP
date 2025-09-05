@@ -12,8 +12,10 @@ include '../components/header.php';
     <title>L&F Platform</title>
 </head>
 <body>
-    <div class="container-fluid custom-header">
-        <nav class="navbar p-1.5 mb-3">
+<div class="page-container d-flex flex-column border border-danger">
+    <!-- header -->
+    <div class="custom-header container-fluid">
+        <nav class="navbar p-1.5">
             <a class= "navbar-brand custom-logo" tabindex="-1" href="../main/lfp.php">
                 <img src="../uploads/circle_logo.png" style="width:45px; height:auto; margin-right: 10px;" alt="logo">
                 Lost & Found  
@@ -37,9 +39,11 @@ include '../components/header.php';
             </ul>       
         </nav>
     </div>
-    <main class="container-fluid">
-        <!--search container-->
-        <div class="container-fluid mb-4 d-flex justify-content-between align-items-center">
+
+     <!--main -->    <!--TODO: CREATE A SHADOW FOR BORDER STYLES AND FIX THE STYLE OF RECENTS  -->
+    <main class=" main-container d-flex flex-column container-fluid p-2 mt-3 border border-dark">
+        <!--search-->
+        <div class="search-container container-fluid mb-4 d-flex justify-content-between align-items-center">
             <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name);?></span>
             <form class="d-flex gap-1" action="" method="get">
                 <input class="search-bar form-control border-1 border-dark" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
@@ -50,17 +54,20 @@ include '../components/header.php';
                 </select>
             </form>
         </div>
-         <!--Lost container-->
-        <div class="content border p-2 d-flex align-content-around flex-wrap flex-column">
-            <div class="container-fluid p-3 border">
-                <h5>Recently Found</h5>
-                <hr>
-            </div>
-            <div class="container-fluid p-3 border">
-                <h5>Recently Lost</h5>
-                <hr>   
+
+        <!--content-->
+        <div class="content-container container-fluid border border-dark">
+            <div class="col d-flex flex-column gap-3">
+                <div class="row border p-3 ">
+                    <h5>Recent Found</h5>
+                </div>
+
+                <div class="row border p-3 ">
+                    <h5>Recent Lost</h5>
+                </div>
             </div>
         </div>
     </main>
+</div>
 </body>
 </html>

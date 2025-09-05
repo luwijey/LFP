@@ -5,6 +5,12 @@
     --input-width: 17rem !important;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -91,3 +97,16 @@ select, option {
     font-size:20px;
 }
 
+.page-container { 
+    min-height: 100vh; 
+}
+
+.main-container { 
+    flex-grow:1;
+    overflow: hidden;
+}
+
+.content-container {
+    flex-grow:1;
+    box-sizing: border-box;
+}
