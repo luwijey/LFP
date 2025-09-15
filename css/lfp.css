@@ -27,6 +27,7 @@ body {
 .custom-logo {
     font-family: var(--header-font);
     color:white;
+    font-weight:900;
     letter-spacing: 8px;
 }
 
@@ -94,19 +95,35 @@ select, option {
 }
 
 .userName {
-    font-size:20px;
+    font-size:18px;
+    font-weight:700;
+    color: var(--main-color);
 }
 
-.page-container { 
+.page-wrapper { 
     min-height: 100vh; 
 }
 
-.main-container { 
-    flex-grow:1;
+.main-container,
+.tab-pane {
+    flex-grow: 1; 
     overflow: hidden;
 }
 
-.content-container {
-    flex-grow:1;
-    box-sizing: border-box;
+.content-container { 
+    flex-grow:1; 
+    box-sizing: border-box; 
+    box-shadow: 0px 2px 8px var(--main-color);
 }
+
+.recent-wrapper { 
+    height:100%;
+    border-color: var(--main-color) !important;
+}
+
+.recent-wrapper h6 {
+    font-size: 1rem; 
+    font-weight: 600; 
+    color: #005f56; 
+}
+
