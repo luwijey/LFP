@@ -20,6 +20,7 @@ include '../components/header.php';
                 <img src="../uploads/circle_logo.png" style="width:45px; height:auto; margin-right: 10px;" alt="logo">
                 Lost & Found  
             </a>    
+
             <ul class="nav nav-pills gap-1 custom-list " id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button 
@@ -66,12 +67,12 @@ include '../components/header.php';
      <!--main --> 
     <main class="main-container tab-content d-flex flex-column container-fluid p-1 mt-2">
         <!--dashboard-->
-        <div class="dashboard tab-pane fade show active d-flex p-2 flex-column" role="tabpanel">
+        <div class="dashboard tab d-flex p-2 flex-column" role="tabpanel">
                 <!--search-->
             <div class="search-container container-fluid mb-4 d-flex justify-content-between align-items-center">
                 <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name);?></span>
                 <form class="d-flex gap-1" action="" method="get">
-                    <input class="search-bar form-control border-1 border-dark" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
+                    <input class="search-bar form-control border-1 border-dark mx-1" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
                     <select class="sort p-2" name="sort" id="sort">
                         <option value="all">All</option>
                         <option value="lost">Lost</option>
@@ -95,12 +96,12 @@ include '../components/header.php';
         </div>
         
         <!--reports-->
-        <div class="reports tab-pane fade" role="tabpanel">
+        <div class="reports tab d-none border border-2" role="tabpanel">
             <h6>Reports</h6>
         </div>
 
         <!--profile-->
-        <div class="profile tab-pane fade "role="tabpanel">
+        <div class="profile tab d-none"role="tabpanel">
             <h6>profile </h6>
         </div>
     </main>
