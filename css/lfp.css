@@ -3,13 +3,11 @@
     --header-font: 'Montserrat';
     --font-color: rgb(42, 42, 42);
     --input-width: 17rem !important;
+    --shadow: 0px 2px 8px var(--main-color);
+    --button-hover: #014740;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+
 
 body {
     margin: 0 !important;
@@ -110,10 +108,10 @@ select, option {
     overflow: hidden;
 }
 
-.content-container { 
+.dashboard-content { 
     flex-grow:1; 
     box-sizing: border-box; 
-    box-shadow: 0px 2px 8px var(--main-color);
+    box-shadow: var(--shadow);
 }
 
 .recent-wrapper { 
@@ -121,10 +119,40 @@ select, option {
     border-color: var(--main-color) !important;
 }
 
-.recent-wrapper h6 {
-    font-size: 1rem; 
+.recent-wrapper h6,
+.reports-content h6 {
     font-weight: 600; 
-    color: #005f56; 
+    color: var(--main-color);
+}
+
+.reports-container {
+    box-sizing: border-box;
+    border-color: var(--main-color) !important;
+}
+
+.reports-container button {
+    background-color: var(--main-color);
+    color: white;
+    border-color: white !important;
+    transition: background-color 0.5s ease-in-out !important;
+}
+
+.reports-container button:hover,
+.reports-container button:after { 
+    background-color: var(--button-hover) !important;
+    color:white !important; 
+    border-color: white !important;
+
+}
+
+.reports-content {  
+    flex-grow:1;
+    box-sizing: border-box;
+}
+
+.r-cards {
+    flex-grow:1;
+    box-shadow: var(--shadow);
 }
 
 

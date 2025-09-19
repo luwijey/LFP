@@ -67,7 +67,7 @@ include '../components/header.php';
      <!--main --> 
     <main class="main-container tab-content d-flex flex-column container-fluid p-1 mt-2">
         <!--dashboard-->
-        <div class="dashboard tab d-flex p-2 flex-column" role="tabpanel">
+        <div class="dashboard tab d-none p-2 flex-column" role="tabpanel">
                 <!--search-->
             <div class="search-container container-fluid mb-4 d-flex justify-content-between align-items-center">
                 <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name);?></span>
@@ -82,7 +82,7 @@ include '../components/header.php';
             </div>
 
             <!--content-->
-            <div class="content-container d-flex container-fluid border rounded-1">
+            <div class="dashboard-content d-flex container-fluid border rounded-1">
                 <div class="column-wrapper col p-3 d-flex flex-column gap-3 text-center">
                     <div class="recent-wrapper row border border-2 rounded-2 p-3 ">
                         <h6>Recent Found</h6>
@@ -96,8 +96,23 @@ include '../components/header.php';
         </div>
         
         <!--reports-->
-        <div class="reports tab d-none border border-2" role="tabpanel">
-            <h6>Reports</h6>
+        <div class="reports tab p-2 d-flex" role="tabpanel">
+            <div class="reports-container p-2 d-flex flex-column container-xxl border border-2 rounded-1">
+                <div class="container-xxl p-3">
+                    <button class="btn fs-6 border border-3" type="button">
+                        <i class="fa-solid fa-plus"></i>
+                        Create Report
+                    </button>
+                </div>
+                <div class="reports-content p-2 d-flex gap-3 justify-content-between container-xxl">
+                    <div class="my-reports r-cards p-3 container border rounded-2">
+                        <h6>My Reports</h6>
+                    </div>
+                    <div class="possible-matches r-cards p-3 container border rounded-2">
+                        <h6>Possible Matches</h6>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--profile-->
