@@ -8,11 +8,11 @@ include '../components/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/lfp.css">
-    <script src="../js/script.js"></script>
+    <script defer src="../js/script.js"></script>
     <title>L&F Platform</title>
 </head>
 <body>
-<div class="page-wrapper d-flex flex-column ">
+<div class="page-wrapper d-flex flex-column position-relative">
     <!-- header -->
     <div class="custom-header container-fluid">
         <nav class="navbar p-1.5">
@@ -99,7 +99,7 @@ include '../components/header.php';
         <div class="reports tab p-2 d-flex" role="tabpanel">
             <div class="reports-container p-2 d-flex flex-column container-xxl border border-2 rounded-1">
                 <div class="container-xxl p-3">
-                    <button class="btn fs-6 border border-3" type="button">
+                    <button class="btn fs-6 border border-3" type="button" id="createReport">
                         <i class="fa-solid fa-plus"></i>
                         Create Report
                     </button>
@@ -113,6 +113,15 @@ include '../components/header.php';
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="reportModal border border-3 vh-100 container-fluid mx-auto p-5 z-3 position-absolute top-50 start-50 translate-middle d-none ">
+            <form action="">
+                <div class="reportForms container p-3 w-50 border border-2 rounded-2 shadow d-flex flex-column position-absolute top-50 start-50 translate-middle">
+                    <h6>Create Report</h6>
+                
+                
+                </div>
+            </form>
         </div>
 
         <!--profile-->
