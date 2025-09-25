@@ -40,71 +40,62 @@ navs.forEach(tab => {
   const found = document.getElementById("found");
 
   //modals
-  const reportModal = document.getElementsByClassName("reportModal")[0];
-  const lostForm = document.getElementsByClassName("lostForm")[0];
-  const foundForm = document.getElementsByClassName("foundForm")[0];
-  const entryForm = document.getElementsByClassName("entryForm")[0];
+  const reportModal = document.querySelector(".reportModal");
+  const lostForm = document.querySelector(".lostForm");
+  const foundForm = document.querySelector(".foundForm");
+  const entryForm = document.querySelector(".entryForm");
 
   //icons
   const closeIco = document.querySelectorAll("#close-modal");
   const returnFunction = document.querySelectorAll("#return");
 
+  const forms = [lostForm, foundForm, entryForm];
+  const hideAllForms = () => forms.forEach(hide);
+
+  //functions
+  const show = (el) => { 
+    el.classList.remove("d-none");
+    el.classList.add("d-flex");
+  };
+
+  const hide = (el) => {
+    el.classList.remove("d-flex");
+    el.classList.add("d-none");
+  };
+
   const openModal = () => {
-    reportModal.classList.remove("d-none");
-    reportModal.classList.add("d-flex");
+   show(reportModal);
+   hideAllForms();
+   show(entryForm);
+  };
 
-    entryForm.classList.remove("d-none");
-    entryForm.classList.add("d-flex");
-  }
+  const openLost = () => {
+    hideAllForms();
+    show(lostForm);
+  };
 
-   const openLost = () => {
-    lostForm.classList.remove("d-none");
-    foundForm.classList.remove("d-flex");
-    entryForm.classList.remove("d-flex");
-
-    lostForm.classList.add("d-flex");
-  }
-
-   const openFound = () => {
-    foundForm.classList.remove("d-none");
-    lostForm.classList.remove("d-flex");
-    entryForm.classList.remove("d-flex");
-
-    foundForm.classList.add("d-flex");
-  }
+  const openFound = () => {
+    hideAllForms();
+    show(foundForm);
+  };
 
   const closeModal = () => {
-    reportModal.classList.remove("d-flex");
-    lostForm.classList.remove("d-flex");
-    foundForm.classList.remove("d-flex");
-    entryForm.classList.remove("d-flex");
+   hideAllForms();
+   hide(reportModal);
+  };
 
-    reportModal.classList.add("d-none");
-    lostForm.classList.add("d-none");
-    foundForm.classList.add("d-none");
-    entryForm.classList.add("d-none");
-  }
-
+  //event listeners
   lost.addEventListener("click", openLost);
   found.addEventListener("click", openFound);
+  createReport.addEventListener("click", openModal);
 
   closeIco.forEach(icon => {
     icon.addEventListener("click", closeModal);
   });
 
-  returnFunction.forEach(toggle => {
-    toggle.addEventListener("click", () => {
-      foundForm.classList.remove("d-flex");
-      lostForm.classList.remove("d-flex");
-      foundForm.classList.add("d-none");
-      lostForm.classList.add("d-none");
-
-      openModal();
-
-    });
+  returnFunction.forEach(btn => {
+    btn.addEventListener("click", openModal);
   });
-
-  createReport.addEventListener("click", openModal);
 
   reportModal.addEventListener("click", (e) => {
     if (e.target === reportModal) closeModal();
