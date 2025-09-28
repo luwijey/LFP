@@ -204,5 +204,7 @@ select, option {
     transform: scale(0.95);
 }
 
-
+.foundAgreement, .lostAgreement {
+    max-width: 35em;
+}
 
