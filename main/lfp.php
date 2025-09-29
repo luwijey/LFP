@@ -221,7 +221,7 @@ include '../components/header.php';
                         <div class="card-body">
                             <div class="card-title text-center border-bottom border-dark p-1">
                                 <h6 class="fw-bolder position-relative">
-                                    <i class="fa-solid fa-arrow-left position-absolute start-0" id="return" style="cursor: pointer;"></i>
+                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0" id="close-agreement" style="cursor: pointer;"></i>
                                     Terms & Conditions - Found Item Report
                                 </h6>
                             </div>
@@ -250,7 +250,7 @@ include '../components/header.php';
                         <div class="card-body">
                             <div class="card-title text-center border-bottom border-dark p-1">
                                 <h6 class="fw-bolder position-relative">
-                                    <i class="fa-solid fa-arrow-left position-absolute start-0" id="return" style="cursor: pointer;"></i>
+                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0" id="close-agreement" style="cursor: pointer;"></i>
                                     Terms & Conditions - Lost Item Report
                                 </h6>
                             </div>

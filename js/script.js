@@ -40,7 +40,7 @@ navs.forEach(tab => {
   const found = document.getElementById("found");
   const foundAgreementBtn = document.getElementById("foundTC");
   const lostAgreementBtn = document.getElementById("lostTC");
- 
+
 
   //modals
   const reportModal = document.querySelector(".reportModal");
@@ -52,13 +52,14 @@ navs.forEach(tab => {
 
   //icons
   const closeIco = document.querySelectorAll("#close-modal");
+  const closeAgreement = document.querySelectorAll("#close-agreement")
   const returnFunction = document.querySelectorAll("#return");
 
   const forms = [lostForm, foundForm, entryForm, foundAgreementModal, lostAgreementModal];
   const hideAllForms = () => forms.forEach(hide);
 
   //functions
-  const show = (el) => { 
+  const show = (el) => {
     el.classList.remove("d-none");
     el.classList.add("d-flex");
   };
@@ -69,9 +70,9 @@ navs.forEach(tab => {
   };
 
   const openModal = () => {
-   show(reportModal);
-   hideAllForms();
-   show(entryForm);
+    show(reportModal);
+    hideAllForms();
+    show(entryForm);
   };
 
   const openLost = () => {
@@ -85,8 +86,9 @@ navs.forEach(tab => {
   };
 
   const closeModal = () => {
-   hideAllForms();
-   hide(reportModal);
+    hideAllForms();
+    hide(reportModal);
+    location.reload();
   };
 
   //for agreements 
@@ -104,6 +106,18 @@ navs.forEach(tab => {
   createReport.addEventListener("click", openModal);
   foundAgreementBtn.addEventListener("click", openFoundAgreement);
   lostAgreementBtn.addEventListener("click", openLostAgreement);
+
+  closeAgreement.forEach(agreement => {
+    agreement.addEventListener("click", () => {
+      if (agreement.closest(".foundAgreement")) {
+        hide(foundAgreementModal);
+      }
+
+      if (agreement.closest(".lostAgreement")) {
+        hide(lostAgreementModal);
+      }
+    });
+  });
 
 
   closeIco.forEach(icon => {
