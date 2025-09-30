@@ -4,7 +4,20 @@ window.addEventListener("pageshow", function (e) {
   }
 });
 
-//function for navigation buttons
+
+//functions
+const show = (el) => {
+  el.classList.remove("d-none");
+  el.classList.add("d-flex");
+};
+
+const hide = (el) => {
+  el.classList.remove("d-flex");
+  el.classList.add("d-none");
+};
+
+
+//for navigation buttons
 const navs = document.querySelectorAll(".nav-link");
 const tabPanels = document.querySelectorAll(".tab");
 
@@ -31,6 +44,28 @@ navs.forEach(tab => {
   });
 });
 
+
+{
+  const sortSelect = document.getElementById("sort");
+  const foundPage = document.querySelector(".foundpage");
+  const lostPage = document.querySelector(".lostpage");
+
+  sortSelect.addEventListener("change", (e) => {
+    const sortValue = e.target.value;
+    if (sortValue === "found") {
+      show(foundPage);
+      hide(lostPage);
+    } else if (sortValue === "lost") {
+      show(lostPage);
+      hide(foundPage);
+    } else {
+      show(foundPage);
+      show(lostPage);
+    }
+  });
+}
+
+
 {
   //Create Report Modal 
 
@@ -41,7 +76,6 @@ navs.forEach(tab => {
   const foundAgreementBtn = document.getElementById("foundTC");
   const lostAgreementBtn = document.getElementById("lostTC");
 
-
   //modals
   const reportModal = document.querySelector(".reportModal");
   const lostForm = document.querySelector(".lostForm");
@@ -49,6 +83,7 @@ navs.forEach(tab => {
   const entryForm = document.querySelector(".entryForm");
   const foundAgreementModal = document.querySelector(".foundAgreement");
   const lostAgreementModal = document.querySelector(".lostAgreement");
+  const inputForms = document.getElementById("inputForms");
 
   //icons
   const closeIco = document.querySelectorAll("#close-modal");
@@ -57,17 +92,6 @@ navs.forEach(tab => {
 
   const forms = [lostForm, foundForm, entryForm, foundAgreementModal, lostAgreementModal];
   const hideAllForms = () => forms.forEach(hide);
-
-  //functions
-  const show = (el) => {
-    el.classList.remove("d-none");
-    el.classList.add("d-flex");
-  };
-
-  const hide = (el) => {
-    el.classList.remove("d-flex");
-    el.classList.add("d-none");
-  };
 
   const openModal = () => {
     show(reportModal);
@@ -88,9 +112,9 @@ navs.forEach(tab => {
   const closeModal = () => {
     hideAllForms();
     hide(reportModal);
-    location.reload();
+    inputForms.reset();
   };
-
+  
   //for agreements 
   const openFoundAgreement = () => {
     show(foundAgreementModal);
@@ -119,13 +143,12 @@ navs.forEach(tab => {
     });
   });
 
+  returnFunction.forEach(btn => {
+    btn.addEventListener("click", openModal);
+  });
 
   closeIco.forEach(icon => {
     icon.addEventListener("click", closeModal);
-  });
-
-  returnFunction.forEach(btn => {
-    btn.addEventListener("click", openModal);
   });
 
   reportModal.addEventListener("click", (e) => {
@@ -137,4 +160,5 @@ navs.forEach(tab => {
   });
 
 }
+
 

@@ -117,6 +117,7 @@ select, option {
 .recent-wrapper { 
     height:100%;
     border-color: var(--main-color) !important;
+    overflow-y: auto;
 }
 
 .recent-wrapper h6,
@@ -207,4 +208,5 @@ select, option {
 .foundAgreement, .lostAgreement {
     max-width: 35em;
 }
+
 

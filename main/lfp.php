@@ -69,7 +69,7 @@ include '../components/header.php';
         <!--main -->
         <main class="main-container tab-content d-flex flex-column container-fluid p-1 mt-2">
             <!--dashboard-->
-            <div class="dashboard tab d-none p-2 flex-column" role="tabpanel">
+            <div class="dashboard tab d-flex p-2 flex-column" role="tabpanel">
                 <!--search-->
                 <div class="search-container container-fluid mb-4 d-flex justify-content-between align-items-center">
                     <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name); ?></span>
@@ -77,8 +77,8 @@ include '../components/header.php';
                         <input class="search-bar form-control border-1 border-dark mx-1" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
                         <select class="sort p-2" name="sort" id="sort">
                             <option value="all">All</option>
-                            <option value="lost">Lost</option>
                             <option value="found">Found</option>
+                            <option value="lost">Lost</option>
                         </select>
                     </form>
                 </div>
@@ -86,11 +86,11 @@ include '../components/header.php';
                 <!--content-->
                 <div class="dashboard-content d-flex container-fluid border rounded-1">
                     <div class="column-wrapper col p-3 d-flex flex-column gap-3 text-center">
-                        <div class="recent-wrapper row border border-2 rounded-2 p-3 ">
+                        <div class="recent-wrapper foundpage d-flex row border border-2 rounded-2 p-3">
                             <h6>Recent Found</h6>
                         </div>
 
-                        <div class="recent-wrapper row border border-2 rounded-2 p-3 ">
+                        <div class="recent-wrapper lostpage d-flex row border border-2 rounded-2 p-3">
                             <h6>Recent Lost</h6>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ include '../components/header.php';
             </div>
 
             <!--reports-->
-            <div class="reports tab p-2 d-flex" role="tabpanel">
+            <div class="reports tab p-2 d-none" role="tabpanel">
                 <div class="reports-container p-2 d-flex flex-column container-xxl border border-2 rounded-1">
                     <div class="container-xxl p-3">
                         <button class="btn fs-6 border border-3" type="button" id="createReport">
@@ -117,7 +117,7 @@ include '../components/header.php';
                 </div>
             </div>
             <div class="reportModal container-fluid d-none mx-auto p-5 z-3 position-absolute top-50 start-50 translate-middle vh-100">
-                <form action=" " method="POST" enctype="multipart/form-data">
+                <form action=" " method="POST" enctype="multipart/form-data" id="inputForms">
 
                     <!--choose the type of report -->
                     <div class="entryForm container d-flex p-4 w-50 border border-2 rounded-2 shadow flex-column position-absolute top-50 start-50 translate-middle">
@@ -137,7 +137,7 @@ include '../components/header.php';
                     <div class="lostForm container d-none p-4 w-50 border border-2 rounded-2 shadow flex-column position-absolute top-50 start-50 translate-middle">
                         <div class="d-flex justify-content-between">
                             <i class="fa-solid fa-arrow-left" id="return" style="cursor: pointer;"></i>
-                            <i class="fa-solid fa-xmark fs-6" id="close-modal" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-xmark fs-6" type="reset" id="close-modal" style="cursor: pointer;"></i>
                         </div>
                         <h6 class="modal-title mx-auto mb-4 fs-5">
                             Lost Item
@@ -239,7 +239,6 @@ include '../components/header.php';
                                 <div class="form-check d-flex mt-2 mx-auto justify-content-center gap-2">
                                     <input class="form-check-input" type="checkbox" id="foundTermsConditions" required>
                                     I have read and agree to the Terms & Conditions.
-
                                 </div>
                             </div>
                         </div>
