@@ -117,12 +117,11 @@ include '../components/header.php';
                 </div>
             </div>
             <div class="reportModal container-fluid d-none mx-auto p-5 z-3 position-absolute top-50 start-50 translate-middle vh-100">
-                <form action=" " method="POST" enctype="multipart/form-data" id="inputForms">
-
+                <form action="../endUser/createReport.php" method="POST" enctype="multipart/form-data" id="inputForms">
                     <!--choose the type of report -->
                     <div class="entryForm container d-flex p-4 w-50 border border-2 rounded-2 shadow flex-column position-absolute top-50 start-50 translate-middle">
                         <div class="d-flex justify-content-end">
-                            <i class="fa-solid fa-xmark fs-6" id="close-modal" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-xmark fs-6 close-modal" style="cursor: pointer;"></i>
                         </div>
                         <h6 class="modal-title mx-auto mb-3 fs-5">
                             Choose the type of report
@@ -131,13 +130,14 @@ include '../components/header.php';
                             <button class="btn w-50 fw-semibold text-white" type="button" id="lost">Lost</button>
                             <button class="btn w-50 fw-semibold text-white" type="button" id="found">Found</button>
                         </div>
+                        <input type="hidden" name="report_type" id="report_type">
                     </div>
 
                     <!--Lost report -->
                     <div class="lostForm container d-none p-4 w-50 border border-2 rounded-2 shadow flex-column position-absolute top-50 start-50 translate-middle">
                         <div class="d-flex justify-content-between">
-                            <i class="fa-solid fa-arrow-left" id="return" style="cursor: pointer;"></i>
-                            <i class="fa-solid fa-xmark fs-6" type="reset" id="close-modal" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-arrow-left return" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-xmark fs-6 close-modal" type="reset" style="cursor: pointer;"></i>
                         </div>
                         <h6 class="modal-title mx-auto mb-4 fs-5">
                             Lost Item
@@ -157,10 +157,10 @@ include '../components/header.php';
                                 <option value="others">Others</option>
                             </select>
                             <textarea class="form-control text-area" rows="3" placeholder="Description (color, brand, etc...)" name="description" required></textarea>
-                            <input type="file" class="form-control" name="item_photo" accept="image/*" required>
-                            <label for="date">Date of Found / Lost </label>
+                            <label for="date">Date of Lost </label>
                             <input type="date" class="form-control" name="date" required>
                             <input type="text" class="form-control" placeholder="Location (e.g., Library, Gym, Parking Lot)" name="location" required>
+                            <input type="file" class="form-control" name="item_photo" accept="image/*" required>
                             <div class="form-check mt-2 mx-auto text-center">
                                 <p><a class="link-info link-offset-1" id="lostTC" href="#">Terms & Conditions</a></p>
                                 <input class="form-check-input" type="checkbox" id="agreement" required>
@@ -178,8 +178,8 @@ include '../components/header.php';
                     <!--Found Report-->
                     <div class="foundForm container d-none p-4 w-50 border border-2 rounded-2 shadow flex-column position-absolute top-50 start-50 translate-middle">
                         <div class="d-flex justify-content-between">
-                            <i class="fa-solid fa-arrow-left" id="return" style="cursor: pointer;"></i>
-                            <i class="fa-solid fa-xmark fs-6" id="close-modal" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-arrow-left return" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-xmark fs-6 close-modal" style="cursor: pointer;"></i>
                         </div>
                         <h6 class="modal-title mx-auto mb-4 fs-5">
                             Found Item
@@ -198,7 +198,7 @@ include '../components/header.php';
                                 <option value="documents">ID / Documents</option>
                                 <option value="others">Others</option>
                             </select>
-                            <label for="date">Date of Found / Lost </label>
+                            <label for="date">Date of Found </label>
                             <input type="date" class="form-control" name="date" required>
                             <input type="text" class="form-control" placeholder="Location (e.g., Library, Gym, Parking Lot)" name="location" required>
                             <input type="file" class="form-control" name="item_photo" accept="image/*" required>
@@ -221,7 +221,7 @@ include '../components/header.php';
                         <div class="card-body">
                             <div class="card-title text-center border-bottom border-dark p-1">
                                 <h6 class="fw-bolder position-relative">
-                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0" id="close-agreement" style="cursor: pointer;"></i>
+                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0 close-agreement"  style="cursor: pointer;"></i>
                                     Terms & Conditions - Found Item Report
                                 </h6>
                             </div>
@@ -249,7 +249,7 @@ include '../components/header.php';
                         <div class="card-body">
                             <div class="card-title text-center border-bottom border-dark p-1">
                                 <h6 class="fw-bolder position-relative">
-                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0" id="close-agreement" style="cursor: pointer;"></i>
+                                    <i class="fa-solid fa-xmark fs-6 position-absolute end-0 close-agreement" style="cursor: pointer;"></i>
                                     Terms & Conditions - Lost Item Report
                                 </h6>
                             </div>
@@ -257,7 +257,7 @@ include '../components/header.php';
                                 <p class="fw-semibold">By submitting a found item report, you agree to the following:</p>
                                 <ol>
                                     <li><strong>Accuracy of Information:</strong> You confirm that all details you provide are true and correct to the best of your knowledge.</li>
-                                    <li><strong>Item Description:</strong> Do not include overly sensitive or highly specific identifiers (e.g., serial numbers, account numbers, codes). Keep your description general (e.g., color, brand, type) to prevent false claims.</li>
+                                    <li><strong>Item Description:</strong> <strong>Do not include overly sensitive or highly specific identifiers </strong> (e.g., serial numbers, account numbers, codes). Keep your description general (e.g., color, brand, type) to prevent false claims.</li>
                                     <li><strong>Proof of Ownership:</strong> To reclaim your item, you may be required to provide supporting evidence such as receipts, identification, or prior photos.</li>
                                     <li><strong>Confidentiality:</strong> Your report will be securely stored and only accessible to authorized personnel for verification and processing.</li>
                                     <li><strong>False Reporting:</strong> Submitting misleading or fraudulent information is strictly prohibited and may result in rejection of your claim and further administrative action.</li>

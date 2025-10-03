@@ -17,35 +17,38 @@ const hide = (el) => {
 };
 
 
-//for navigation buttons
-const navs = document.querySelectorAll(".nav-link");
-const tabPanels = document.querySelectorAll(".tab");
+{
+  const navs = document.querySelectorAll(".nav-link");
+  const tabPanels = document.querySelectorAll(".tab");
 
-navs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    navs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
+  const dashboard = document.querySelector(".dashboard");
+  const reports = document.querySelector(".reports");
+  const profile = document.querySelector(".profile");
 
-    tabPanels.forEach(panel => {
-      panel.classList.add("d-none");
-      panel.classList.remove("d-flex");
+  navs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      navs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      tabPanels.forEach(panel => {
+        panel.classList.add("d-none");
+        panel.classList.remove("d-flex");
+      });
+
+      if (tab.id === "dashboard-tab") {
+        show(dashboard);
+      } else if (tab.id === "reports-tab") {
+        show(reports)
+      } else if (tab.id === "profile-tab") {
+        show(profile);
+      }
     });
-
-    if (tab.id === "dashboard-tab") {
-      document.querySelector(".dashboard").classList.remove("d-none");
-      document.querySelector(".dashboard").classList.add("d-flex");
-    } else if (tab.id === "reports-tab") {
-      document.querySelector(".reports").classList.remove("d-none");
-      document.querySelector(".reports").classList.add("d-flex");
-    } else if (tab.id === "profile-tab") {
-      document.querySelector(".profile").classList.remove("d-none");
-      document.querySelector(".profile").classList.add("d-flex");
-    }
   });
-});
+}
 
 
 {
+  //dashboard-tab
   const sortSelect = document.getElementById("sort");
   const foundPage = document.querySelector(".foundpage");
   const lostPage = document.querySelector(".lostpage");
@@ -67,16 +70,17 @@ navs.forEach(tab => {
 
 
 {
-  //Create Report Modal 
+  // report-tab
 
-  //buttons
+  // buttons
   const createReport = document.getElementById("createReport");
-  const lost = document.getElementById("lost");
-  const found = document.getElementById("found");
+  const lostBtn = document.getElementById("lost");
+  const foundBtn = document.getElementById("found");
   const foundAgreementBtn = document.getElementById("foundTC");
   const lostAgreementBtn = document.getElementById("lostTC");
+  const reportType = document.getElementById("report_type");
 
-  //modals
+  // modals
   const reportModal = document.querySelector(".reportModal");
   const lostForm = document.querySelector(".lostForm");
   const foundForm = document.querySelector(".foundForm");
@@ -85,10 +89,9 @@ navs.forEach(tab => {
   const lostAgreementModal = document.querySelector(".lostAgreement");
   const inputForms = document.getElementById("inputForms");
 
-  //icons
-  const closeIco = document.querySelectorAll("#close-modal");
-  const closeAgreement = document.querySelectorAll("#close-agreement")
-  const returnFunction = document.querySelectorAll("#return");
+  // icons 
+  const closeAgreement = document.querySelectorAll(".close-agreement");
+  const returnBtn = document.querySelectorAll(".return");
 
   const forms = [lostForm, foundForm, entryForm, foundAgreementModal, lostAgreementModal];
   const hideAllForms = () => forms.forEach(hide);
@@ -99,14 +102,14 @@ navs.forEach(tab => {
     show(entryForm);
   };
 
-  const openLost = () => {
+  const openform = (form, type = null) => {
     hideAllForms();
-    show(lostForm);
+    show(form);
+    if (type) reportType.value = type;
   };
 
-  const openFound = () => {
-    hideAllForms();
-    show(foundForm);
+  const openAgreement = (agreementModal) => {
+    show(agreementModal);
   };
 
   const closeModal = () => {
@@ -114,45 +117,34 @@ navs.forEach(tab => {
     hide(reportModal);
     inputForms.reset();
   };
-  
-  //for agreements 
-  const openFoundAgreement = () => {
-    show(foundAgreementModal);
-  };
 
-  const openLostAgreement = () => {
-    show(lostAgreementModal);
-  }
-
-  //event listeners
-  lost.addEventListener("click", openLost);
-  found.addEventListener("click", openFound);
   createReport.addEventListener("click", openModal);
-  foundAgreementBtn.addEventListener("click", openFoundAgreement);
-  lostAgreementBtn.addEventListener("click", openLostAgreement);
 
-  closeAgreement.forEach(agreement => {
-    agreement.addEventListener("click", () => {
-      if (agreement.closest(".foundAgreement")) {
-        hide(foundAgreementModal);
-      }
+  lostBtn.addEventListener("click", () => openform(lostForm, "lost"));
+  foundBtn.addEventListener("click", () => openform(foundForm, "found"));
 
-      if (agreement.closest(".lostAgreement")) {
-        hide(lostAgreementModal);
-      }
-    });
-  });
+  foundAgreementBtn.addEventListener("click", () => openAgreement(foundAgreementModal));
+  lostAgreementBtn.addEventListener("click", () => openAgreement(lostAgreementModal));
 
-  returnFunction.forEach(btn => {
+  returnBtn.forEach(btn => {
     btn.addEventListener("click", openModal);
   });
 
-  closeIco.forEach(icon => {
-    icon.addEventListener("click", closeModal);
+  reportModal.addEventListener("click", (e) => {
+    if (e.target === reportModal || e.target.classList.contains("close-modal")) {
+      closeModal();
+    }
   });
 
-  reportModal.addEventListener("click", (e) => {
-    if (e.target === reportModal) closeModal();
+  closeAgreement.forEach(agreement => {
+    agreement.addEventListener("click", () => { 
+      if (agreement.closest(".foundAgreement")) { 
+        hide(foundAgreementModal); 
+      } 
+      if (agreement.closest(".lostAgreement")) { 
+        hide(lostAgreementModal); 
+      } 
+    });
   });
 
   document.addEventListener("keydown", (e) => {
