@@ -70,87 +70,64 @@ const hide = (el) => {
 
 
 {
-  // report-tab
+  const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => document.querySelectorAll(selector);
 
-  // buttons
-  const createReport = document.getElementById("createReport");
-  const lostBtn = document.getElementById("lost");
-  const foundBtn = document.getElementById("found");
-  const foundAgreementBtn = document.getElementById("foundTC");
-  const lostAgreementBtn = document.getElementById("lostTC");
-  const reportType = document.getElementById("report_type");
+  const createReportBtn = $("#createReport");
+  const lostBtn = $("#lost");
+  const foundBtn = $("#found");
+  const foundAgreementBtn = $("#foundTC");
+  const lostAgreementBtn = $("#lostTC");
+  const returnBtns = $$(".return");
+  const closeAgreementBtns = $$(".close-agreement");
 
-  // modals
-  const reportModal = document.querySelector(".reportModal");
-  const lostForm = document.querySelector(".lostForm");
-  const foundForm = document.querySelector(".foundForm");
-  const entryForm = document.querySelector(".entryForm");
-  const foundAgreementModal = document.querySelector(".foundAgreement");
-  const lostAgreementModal = document.querySelector(".lostAgreement");
-  const inputForms = document.getElementById("inputForms");
+  const reportModal = $(".reportModal");
+  const entryForm = $(".entryForm");
+  const lostForm = $(".lostForm");
+  const foundForm = $(".foundForm");
+  const foundAgreementModal = $(".foundAgreement");
+  const lostAgreementModal = $(".lostAgreement");
+  const inputForms = $("#inputForms");
+  const reportType = $("#report_type");
 
-  // icons 
-  const closeAgreement = document.querySelectorAll(".close-agreement");
-  const returnBtn = document.querySelectorAll(".return");
+  const forms = [entryForm, lostForm, foundForm, foundAgreementModal, lostAgreementModal];
 
-  const forms = [lostForm, foundForm, entryForm, foundAgreementModal, lostAgreementModal];
-  const hideAllForms = () => forms.forEach(hide);
+  const hideAll = () => forms.forEach(hide);
 
-  const openModal = () => {
-    show(reportModal);
-    hideAllForms();
-    show(entryForm);
-  };
-
-  const openform = (form, type = null) => {
-    hideAllForms();
-    show(form);
+  const openUI = ({modal = null, form = null, type = null, showEntry = false } = {}) => {
+    if (modal) show(modal);
+    if (form || showEntry) {
+      hideAll();
+      show(form || entryForm);
+    }
     if (type) reportType.value = type;
   };
 
-  const openAgreement = (agreementModal) => {
-    show(agreementModal);
-  };
-
   const closeModal = () => {
-    hideAllForms();
+    hideAll();
     hide(reportModal);
     inputForms.reset();
   };
 
-  createReport.addEventListener("click", openModal);
+  createReportBtn.addEventListener("click", () => openUI({ modal: reportModal, showEntry: true}));
 
-  lostBtn.addEventListener("click", () => openform(lostForm, "lost"));
-  foundBtn.addEventListener("click", () => openform(foundForm, "found"));
+  lostBtn.addEventListener("click", () => openUI({ form: lostForm, type: "lost" }));
+  foundBtn.addEventListener("click", () => openUI({ form: foundForm, type: "found" }));
 
-  foundAgreementBtn.addEventListener("click", () => openAgreement(foundAgreementModal));
-  lostAgreementBtn.addEventListener("click", () => openAgreement(lostAgreementModal));
-
-  returnBtn.forEach(btn => {
-    btn.addEventListener("click", openModal);
-  });
+  lostAgreementBtn.addEventListener("click", () => openUI({ modal: lostAgreementModal}));
+  foundAgreementBtn.addEventListener("click", () => openUI({ modal: foundAgreementModal}));
+  
+  returnBtns.forEach((btn) => btn.addEventListener("click", () => openUI({ modal: reportModal, showEntry: true })));
 
   reportModal.addEventListener("click", (e) => {
-    if (e.target === reportModal || e.target.classList.contains("close-modal")) {
-      closeModal();
-    }
+    if (e.target === reportModal || e.target.classList.contains("close-modal")) closeModal();
   });
 
-  closeAgreement.forEach(agreement => {
-    agreement.addEventListener("click", () => { 
-      if (agreement.closest(".foundAgreement")) { 
-        hide(foundAgreementModal); 
-      } 
-      if (agreement.closest(".lostAgreement")) { 
-        hide(lostAgreementModal); 
-      } 
-    });
-  });
+  closeAgreementBtns.forEach((btn) => 
+    btn.addEventListener("click", () => hide(btn.closest(".foundAgreement, .lostAgreement")))
+  );
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
-
 }
-
-

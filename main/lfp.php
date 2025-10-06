@@ -72,7 +72,7 @@ include '../components/header.php';
             <div class="dashboard tab d-flex p-2 flex-column" role="tabpanel">
                 <!--search-->
                 <div class="search-container container-fluid mb-4 d-flex justify-content-between align-items-center">
-                    <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name); ?></span>
+                    <span class="userName" role="UsernameDisplay">Welcome, <?php echo htmlspecialchars($name);?></span>
                     <form class="d-flex gap-1" action="" method="get">
                         <input class="search-bar form-control border-1 border-dark mx-1" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
                         <select class="sort p-2" name="sort" id="sort">
@@ -156,14 +156,14 @@ include '../components/header.php';
                                 <option value="documents">ID / Documents</option>
                                 <option value="others">Others</option>
                             </select>
-                            <textarea class="form-control text-area" rows="3" placeholder="Description (color, brand, etc...)" name="description" required></textarea>
+                            <textarea class="form-control text-area" rows="3" placeholder="Description (color, brand, etc...)" name="description"></textarea>
                             <label for="date">Date of Lost </label>
                             <input type="date" class="form-control" name="date" required>
                             <input type="text" class="form-control" placeholder="Location (e.g., Library, Gym, Parking Lot)" name="location" required>
                             <input type="file" class="form-control" name="item_photo" accept="image/*" required>
                             <div class="form-check mt-2 mx-auto text-center">
                                 <p><a class="link-info link-offset-1" id="lostTC" href="#">Terms & Conditions</a></p>
-                                <input class="form-check-input" type="checkbox" id="agreement" required>
+                                <input class="form-check-input" type="checkbox" id="agreement" name="lostAgreement" required>
                                 <label class="form-check-label" class="text-white" for="agreement">
                                     I confirm that the information provided is true.
                                 </label>
@@ -204,7 +204,7 @@ include '../components/header.php';
                             <input type="file" class="form-control" name="item_photo" accept="image/*" required>
                             <div class="form-check mt-2 mx-auto text-center">
                                 <p><a class="link-info link-offset-1" id="foundTC" href="#">Terms & Conditions</a></p>
-                                <input class="form-check-input" type="checkbox" id="agreement" required>
+                                <input class="form-check-input" type="checkbox" id="agreement" name="foundAgreement" required>
                                 <label class="form-check-label" class="text-white" for="agreement">
                                     I confirm that the information provided is true.
                                 </label>
@@ -237,7 +237,7 @@ include '../components/header.php';
                                     <li>You agree to return the item to the rightful owner once ownership is verified.</li>
                                 </ol>
                                 <div class="form-check d-flex mt-2 mx-auto justify-content-center gap-2">
-                                    <input class="form-check-input" type="checkbox" id="foundTermsConditions" required>
+                                    <input class="form-check-input" type="checkbox" id="foundTermsConditions" name="foundTermsConditions" required>
                                     I have read and agree to the Terms & Conditions.
                                 </div>
                             </div>
@@ -264,7 +264,7 @@ include '../components/header.php';
                                     <li><strong>Agreement:</strong> By checking the box below, you acknowledge that you understand and agree to these Terms & Conditions.</li>
                                 </ol>
                                 <div class="form-check d-flex mt-2 mx-auto justify-content-center gap-2">
-                                    <input class="form-check-input" type="checkbox" id="lostTermsConditions" required>
+                                    <input class="form-check-input" type="checkbox" id="lostTermsConditions" name="lostTermsConditions" required>
                                     I have read and agree to the Terms & Conditions.
                                 </div>
                             </div>

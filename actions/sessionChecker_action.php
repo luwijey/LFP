@@ -11,6 +11,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+$user_ID = $_SESSION['id'];
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
