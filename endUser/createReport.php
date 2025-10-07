@@ -2,7 +2,6 @@
 include '../components/connection.php';
 include '../actions/sessionChecker_action.php';
 
-session_start();
 $user_ID = $_SESSION['id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    if (!move_uploaded_file($_FILES['item_photo']['temp_name'], $targetFilePath)) {
+    if (!move_uploaded_file($_FILES['item_photo']['tmp_name'], $targetFilePath)) {
         echo json_encode([
             "CreatedReport" => false,
             "Message" => "File upload Failed"
@@ -51,17 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $randomNum = rand(100000, 999999);
             $reportID = "RPT" . $randomNum;
 
-            $query = "SELECT report_id FROM reports WHERE report_id = `$reportID` ";
+            $query = "SELECT report_id FROM reports WHERE report_id = '$reportID' ";
             $result = mysqli_query($conn, $query);
         } while (mysqli_num_rows($result) > 0);
 
         return $reportID;
     }
 
+    $reportID = generateReportID($conn);
 
     switch ($reportType) {
         case "found":
-            $stmt = $conn->prepare("INSERT INTO reports 
+            $stmt = $conn->prepare(
+                "INSERT INTO reports 
             (report_id, 
             user_id, 
             report_type, 
@@ -72,21 +73,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             date_reported, 
             location, 
             agreement,
-            tc_accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            tc_accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
-            $stmt -> bind_param("sisssssssi",
-            $reportID,
-            $user_ID,
-            $reportType,
-            $itemName,
-            $category,
-            $description,
-            $fileName,
-            $date,
-            $location,
-            $tc_accepted,
-            
-        );
+            $stmt->bind_param(
+                "sisssssssi",
+                $reportID,
+                $user_ID,
+                $reportType,
+                $itemName,
+                $category,
+                $description,
+                $fileName,
+                $date,
+                $location,
+                $tc_accepted,
+            );
+
+            if ($stmt->execute()) {
+                echo json_encode([
+                    "CreatedReport" => true,
+                    "Message" => "Found Report hase successfully stored to database"
+                ]);
+            } else {
+                echo json_encode([
+                    "CreatedReport" => false,
+                    "Message" => "Database insert failed" . $stmt->error
+                ]);
+            }
+            $stmt->close();
+            break;
 
         case "lost":
 
