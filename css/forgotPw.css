@@ -1,0 +1,48 @@
+
+@media screen and (max-width: 575.98px) {
+    .custom-container {
+        padding: 0.5rem;
+    }
+
+    .card {
+        width: 100% !important; 
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem; 
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media screen and (min-width: 576px) and (max-width: 992px) {
+    .custom-container {
+        padding: 1rem;
+    }
+
+    .card {
+        width: 80% !important; 
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1060px) {
+    .custom-container {
+        padding: 2rem;
+    }
+
+    .card {
+        width: 28rem !important; 
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+}
